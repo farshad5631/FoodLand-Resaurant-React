@@ -28,9 +28,10 @@ const FoodDetailPage = () => {
   return (
     <>
       <Navbar />
-      <div className="container flex flex-col mx-auto items-center px-44">
+      <div className="container flex flex-col mx-auto items-center px-44 mb-8">
         <h1 className="text-2xl font-bold mb-4">{food.title}</h1>
         <img src={food.image} alt={food.title} className="w-96  mb-4" />
+        <p className="text-lg mb-4 font-bold">{food.title}</p>
         <p className="text-lg mb-4">price: ${food.price}</p>
         <div
           className="text-lg mb-4"
