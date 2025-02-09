@@ -17,7 +17,7 @@ export const fetchInitialMeals = async () => {
       id: item.id,
       title: item.title,
       image: item.image,
-      price: (Math.random() * 20 + 5).toFixed(2), // Random price for demo
+      price: item.pricePerServing // Random price for demo
     }));
   } catch (error) {
     console.error("Error fetching initial meals:", error);
@@ -41,7 +41,7 @@ export const fetchSearchMeals = async (query) => {
       id: item.id,
       title: item.title,
       image: item.image,
-      price: (Math.random() * 20 + 5).toFixed(2),
+      price: item.pricePerServing,
     }));
   } catch (error) {
     console.error("Error fetching search meals:", error);
@@ -73,7 +73,7 @@ export const fetchFilteredMeals = async (country, type, calories) => {
       id: item.id,
       title: item.title,
       image: item.image,
-      price: (Math.random() * 20 + 5).toFixed(2), // Random price for demo
+      price: (Math.random() * 20 + 5).toFixed(2),
     }));
   } catch (error) {
     console.error("Error fetching filtered meals:", error);
