@@ -54,6 +54,7 @@ const CartOverlay = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50 overflow-scroll">
+      <ToastContainer />
       <div className="bg-white p-4 rounded w-1/2 relative shadow-lg">
         <h2 className="text-2xl font-bold mb-4">Cart</h2>
         <ul>
@@ -125,104 +126,10 @@ const CartOverlay = ({ onClose }) => {
           </button>
         </div>
 
-        <ToastContainer />
+        
       </div>
     </div>
   );
 };
 
 export default CartOverlay;
-
-// import React, { useState, useRef, useEffect } from 'react';
-// import { useCart } from '../context/CartContext';
-// import { toast } from 'react-toastify';
-
-// const CartOverlay = ({ toggleCart }) => {
-//   const { cart, removeFromCart, clearCart, updateCartQuantity } = useCart();
-//   const [editMode, setEditMode] = useState({});
-//   const [quantities, setQuantities] = useState({});
-//   const overlayRef = useRef(null);
-
-//   const handleEditClick = (id) => {
-//     setEditMode((prev) => ({ ...prev, [id]: !prev[id] }));
-//     setQuantities((prev) => ({ ...prev, [id]: cart.find((item) => item.id === id)?.quantity || 1 }));
-//   };
-
-//   const handleQuantityChange = (id, quantity) => {
-//     setQuantities((prev) => ({ ...prev, [id]: quantity }));
-//   };
-
-//   const handleSaveClick = (id) => {
-//     updateCartQuantity(id, quantities[id]);
-//     setEditMode((prev) => ({ ...prev, [id]: false }));
-//   };
-
-//   const handlePlaceOrder = () => {
-//     clearCart();
-//     toast.success("Your order saved successfully!");
-//   };
-
-//   const totalPrice = cart.reduce((total, item) => total + parseFloat(item.price) * (item.quantity || 1), 0).toFixed(2);
-
-//   const handleClickOutside = (event) => {
-//     if (overlayRef.current && !overlayRef.current.contains(event.target)) {
-//       toggleCart();
-//     }
-//   };
-
-//   useEffect(() => {
-//     document.addEventListener('mousedown', handleClickOutside);
-//     return () => {
-//       document.removeEventListener('mousedown', handleClickOutside);
-//     };
-//   }, []);
-
-//   return (
-//     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-//       <div ref={overlayRef} className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-md">
-//         <button className="mb-4 text-red-500" onClick={toggleCart}>Close</button>
-//         <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
-//         {cart.length > 0 ? (
-//           <>
-//             <ul>
-//               {cart.map((item) => (
-//                 <li key={item.id} className="flex justify-between items-center mb-2">
-//                   <span>
-//                     {item.title} - ${item.price} - Quantity:
-//                     {editMode[item.id] ? (
-//                       <input
-//                         type="number"
-//                         value={quantities[item.id]}
-//                         onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value, 10))}
-//                         min="1"
-//                         className="border p-1 w-16 ml-2"
-//                       />
-//                     ) : (
-//                       item.quantity || 1
-//                     )}
-//                   </span>
-//                   <div>
-//                     {editMode[item.id] ? (
-//                       <button className="text-green-500" onClick={() => handleSaveClick(item.id)}>Save</button>
-//                     ) : (
-//                       <button className="text-blue-500" onClick={() => handleEditClick(item.id)}>Edit</button>
-//                     )}
-//                     <button className="text-red-500 ml-2" onClick={() => removeFromCart(item.id)}>Remove</button>
-//                   </div>
-//                 </li>
-//               ))}
-//             </ul>
-//             <div className="mt-4">
-//               <h3 className="text-xl font-bold">Total Price: ${totalPrice}</h3>
-//             </div>
-//             <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded" onClick={handlePlaceOrder}>Place Order</button>
-//           </>
-//         ) : (
-//           <p>Your cart is empty</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CartOverlay;
