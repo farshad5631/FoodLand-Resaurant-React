@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "ed27be37e32f439da8ca2599c8c87121";
+const API_KEY = "1aa47d1cc0784cfb85536c24205656c0";
 
 export const fetchInitialMeals = async () => {
   try {
@@ -17,7 +17,7 @@ export const fetchInitialMeals = async () => {
       id: item.id,
       title: item.title,
       image: item.image,
-      price: item.pricePerServing // Random price for demo
+      price: item.pricePerServing, // Random price for demo
     }));
   } catch (error) {
     console.error("Error fetching initial meals:", error);
