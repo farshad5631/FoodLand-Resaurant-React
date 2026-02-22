@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "1aa47d1cc0784cfb85536c24205656c0";
+const API_KEY = "93060a642af041dfb679af316b23cca0";
 
 export const fetchInitialMeals = async () => {
   try {
@@ -11,7 +11,7 @@ export const fetchInitialMeals = async () => {
           apiKey: API_KEY,
           number: 12,
         },
-      }
+      },
     );
     return response.data.recipes.map((item) => ({
       id: item.id,
@@ -35,7 +35,7 @@ export const fetchSearchMeals = async (query) => {
           apiKey: API_KEY,
           number: 15,
         },
-      }
+      },
     );
     return response.data.results.map((item) => ({
       id: item.id,
@@ -61,13 +61,13 @@ export const fetchFilteredMeals = async (country, type, calories) => {
             ? calories === "<500"
               ? 500
               : calories === "500-1000"
-              ? 1000
-              : 2000
+                ? 1000
+                : 2000
             : undefined,
           apiKey: API_KEY,
           number: 15,
         },
-      }
+      },
     );
     return response.data.results.map((item) => ({
       id: item.id,
@@ -88,7 +88,7 @@ export const getFoodDetails = async (id) => {
       params: {
         apiKey: API_KEY,
       },
-    }
+    },
   );
   console.log(response.data);
   return {

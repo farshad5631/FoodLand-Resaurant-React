@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-white  ">
@@ -32,9 +34,9 @@ const Footer = () => {
 
         <div className="md:px-24 flex flex-col space-y-4">
           <h3 className="text-lg font-bold">Links</h3>
-          <a href="">About us</a>
+          <Link to="/About-Us">About Us</Link>
           <a href="">Contact Us</a>
-          <a href="">Our Menu</a>
+          <Link to="/Menu">Our Menu</Link>
           <a href="">Our Team</a>
           <a href="">FAQ</a>
         </div>
