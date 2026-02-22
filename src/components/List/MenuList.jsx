@@ -51,7 +51,6 @@
 
 // export default MenuList;
 
-
 import { useContext, useEffect, useState } from "react";
 import MenuItem from "./MenuItem";
 import axios from "axios";
@@ -76,12 +75,12 @@ const MenuList = ({ category }) => {
         `https://api.spoonacular.com/recipes/complexSearch`,
         {
           params: {
-            apiKey: "1aa47d1cc0784cfb85536c24205656c0",
+            apiKey: "93060a642af041dfb679af316b23cca0",
             type: category,
             number: itemsPerPage,
             offset: (page - 1) * itemsPerPage,
           },
-        }
+        },
       );
       const mealData = response.data.results.map((item) => ({
         id: item.id,
