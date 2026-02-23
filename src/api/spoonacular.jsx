@@ -17,7 +17,7 @@ export const fetchInitialMeals = async () => {
       id: item.id,
       title: item.title,
       image: item.image,
-      price: item.pricePerServing, // Random price for demo
+      price: (item.pricePerServing / 100).toFixed(2), // Convert cents to dollars
     }));
   } catch (error) {
     console.error("Error fetching initial meals:", error);
@@ -41,7 +41,7 @@ export const fetchSearchMeals = async (query) => {
       id: item.id,
       title: item.title,
       image: item.image,
-      price: item.pricePerServing,
+      price: (item.pricePerServing / 100).toFixed(2), // Convert cents to dollars
     }));
   } catch (error) {
     console.error("Error fetching search meals:", error);
@@ -69,11 +69,13 @@ export const fetchFilteredMeals = async (country, type, calories) => {
         },
       },
     );
+    console.log(response.data);
+
     return response.data.results.map((item) => ({
       id: item.id,
       title: item.title,
       image: item.image,
-      price: (Math.random() * 20 + 5).toFixed(2),
+      price: (Math.random() * 12 + 5).toFixed(2),
     }));
   } catch (error) {
     console.error("Error fetching filtered meals:", error);
@@ -90,12 +92,11 @@ export const getFoodDetails = async (id) => {
       },
     },
   );
-  console.log(response.data);
   return {
     id: response.data.id,
     title: response.data.title,
     image: response.data.image,
-    price: response.data.pricePerServing,
+    price: (response.data.pricePerServing / 100).toFixed(2), // Convert cents to dollars
     description: response.data.summary,
     instruction: response.data.instructions,
     calories: response.data.calories,
