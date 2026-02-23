@@ -36,12 +36,16 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Right Side */}
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-3">
           {/* Cart Icon Only */}
           <button onClick={() => setShowCart(true)} className="relative">
-            <img src={shoppingCart} alt="Cart" className="w-6" />
+            <img
+              src={shoppingCart}
+              alt="Cart"
+              className="w-6  bg-red-500 md:hidden rounded-full p-1"
+            />
             {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-1 rounded-full md:hidden">
                 {totalItems}
               </span>
             )}
@@ -50,7 +54,7 @@ const Navbar = () => {
           {/* Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-2xl"
+            className="text-2xl md:hidden focus:outline-none"
           >
             ☰
           </button>

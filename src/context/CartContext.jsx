@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 export const CartContext = createContext();
 
@@ -44,17 +45,18 @@ export const CartProvider = ({ children }) => {
         return prevCart.map((item) =>
           item.id === meal.id
             ? { ...item, quantity: (item.quantity || 1) + 1 }
-            : item
+            : item,
         );
       } else {
         return [...prevCart, { ...meal, quantity: 1 }];
       }
     });
+    toast.success("Item added to cart!");
   };
 
   const updateCartQuantity = (id, quantity) => {
     setCart((prevCart) =>
-      prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
+      prevCart.map((item) => (item.id === id ? { ...item, quantity } : item)),
     );
   };
 
@@ -67,11 +69,21 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, updateCartQuantity, setCart }}
-    >
-      {children}
-    </CartContext.Provider>
+    <>
+      <ToastContainer />
+      <CartContext.Provider
+        value={{
+          cart,
+          addToCart,
+          removeFromCart,
+          clearCart,
+          updateCartQuantity,
+          setCart,
+        }}
+      >
+        {children}
+      </CartContext.Provider>
+    </>
   );
 };
 
